@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.xxxxxxx.svg)](https://doi.org/10.5281/zenodo.xxxxxxx)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17595449.svg)](https://doi.org/10.5281/zenodo.17595449)
 
 # Hyper-Triskelion
 A 4-D parametric geometric system featuring time-inversion feedback, C₃-symmetric arms, and chaos-tunable radial dynamics. Includes full Python implementation, equations, and visualization tools.
