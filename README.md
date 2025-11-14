@@ -89,3 +89,96 @@ This structure does not correspond to any known triskelion, knot, attractor, tor
 Figures and Python simulation code are included for reproducibility.
 
 Authored by Shane Edward Stone, Simulations conducted by AI collaborator Kaelen.
+
+
+# ===============================================================
+# Stone Hyper-Triskelion v2.0
+# Fully Coupled 4D Organism — Reproducible Python Code
+# ===============================================================
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# -----------------------------
+# Parameter ranges
+# -----------------------------
+theta = np.linspace(0, 2*np.pi, 2500)
+t_vals = np.linspace(0, 1, 120)
+phi_vals = [0, 2*np.pi/3, 4*np.pi/3]
+
+# Vertical frequency
+k_vert = 3
+
+
+# -----------------------------
+# Coupling functions (ASCII form of Greek letters)
+# -----------------------------
+
+def t_future(t):
+    return 2 + 0.5 * np.sin(2*np.pi*t)
+
+def epsilon(theta, t):
+    return 0.1 * np.sin(3*theta + 2*np.pi*t)
+
+def r_func(theta, t):
+    return (1 + 0.3*np.sin(2*np.pi*t)) * np.exp(epsilon(theta,t) * np.sin(theta))
+
+def mu(r, t):
+    return 0.2 + 0.1 * np.sin(r + np.pi*t)
+
+def lam(theta, t):
+    return 0.1 + 0.2 * np.sin(4*theta + np.pi*t)
+
+def nu(eps):
+    return 0.15 + 0.1*eps
+
+
+# -----------------------------
+# Fully coupled delta_t
+# -----------------------------
+def delta_t(theta, phi, t):
+    tf = t_future(t)
+    eps = epsilon(theta, t)
+    r = r_func(theta, t)
+    return ((tf - t)
+            * (1 + 0.2*np.sin(phi + np.pi*t))
+            * (1 + mu(r, t)*np.sin(2*theta + np.pi*t))
+            * (1 + lam(theta, t)*np.sin(r))
+            + 0.1*nu(eps)*eps)
+
+
+# -----------------------------
+# Final 4D coordinates
+# -----------------------------
+def coords(theta, phi, t):
+    dt = delta_t(theta, phi, t)
+    r = r_func(theta, t)
+    x = (r + dt*np.cos(theta)) * np.cos(theta + phi + np.sin(dt))
+    y = (r + dt*np.cos(theta)) * np.sin(theta + phi + np.sin(dt))
+    z = dt*np.sin(theta) + np.cos(k_vert * theta / 2)
+    w = dt*np.sin(k_vert * theta / 2)
+    return x, y, z, w
+
+
+# -----------------------------
+# Visualization: 3D projection
+# -----------------------------
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+t_frame = 0.35   # Choose a time slice to visualize
+
+for phi in phi_vals:
+    x, y, z, w = coords(theta, phi, t_frame)
+    ax.plot(x, y, z, linewidth=1.3)
+
+ax.set_title("Stone–Kaelen Hyper-Triskelion v2.0 — Fully Coupled 4D Organism")
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
+plt.tight_layout()
+plt.show()
+
+ 
+
+Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
