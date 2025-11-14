@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Hyper-Triskelion: 4-D Parametric Feedback System"
+message: "If you use this software, please cite it using the metadata below."
+type: software
+
+authors:
+  - family-names: Stone
+    given-names: Shane Edward
+    orcid: "https://orcid.org/0009-0001-0652-9445"
+
+doi: 10.5281/zenodo.17595449
+version: "2.3"
+date-released: "2025-11-13"
+
+repository-code: "https://github.com/ShaneEStone1984/Hyper-Triskelion"
+url: "https://zenodo.org/records/17595449"
+
+keywords:
+  - 4D Geometry
+  - Time-Inversion Models
+  - Parametric Systems
+  - Chaos-Aware AI
+  - Computational Geometry
+  - Hyper-Triskelion
+  - Nonlinear Dynamics
+  - Feedback Systems
+
+license: CC0-1.0
